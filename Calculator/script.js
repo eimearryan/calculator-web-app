@@ -136,3 +136,4 @@ function checkNum(str) {
     }
     return true
 }
+module.exports= checkNum, addChar, deleteChar, compute
