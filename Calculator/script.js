@@ -19,19 +19,20 @@ function compute(form) {
     let hasPowers = false;
     for (var i = 0; i < form.display.value.length; i++) {
         var ch = form.display.value.charAt(i);
+
+        if (ch == "^") {
+            hasPowers = true;
+        }
         if (ch == "e") {
             hasExponents = true;
         }
         if (ch == "l") {
             hasLogs = true;
         }
-        if (ch == "^") {
-            hasPowers = true;
-        }
     }
 
 
-    if (hasExponents == true || hasLogs == true){
+
     var str = form.display.value;
 
     for (var i = 0; i < str.length; i++) {
@@ -45,9 +46,11 @@ function compute(form) {
                         if (currCh == ")") {
                             endIndex = j;
                             let currExp = str.substring(i + 1, j + 1);
+
                             currExp = eval(currExp);
                             currExp = Math.exp(currExp).toFixed(3);
                             str = str.substring(0, i) + currExp + str.substring(j + 1, str.length);
+                            break;
                         }
                     }
                 }
@@ -66,40 +69,54 @@ function compute(form) {
                             currExp = eval(currExp);
                             currExp = Math.log(currExp).toFixed(3);
                             str = str.substring(0, i) + currExp + str.substring(j + 1, str.length);
+                            break;
                         }
                     }
                 }
             }
         }
+        if (hasPowers == true) {
+            for (var i = 0; i < str.length; i++) {
+                var ch = str.charAt(i);
+                if (ch == "^") {
+                    var endIndex;
+                    for (var j = i + 1; j < str.length; j++) {
+                        var currCh = str.charAt(j);
+                        if (currCh == ")") {
+                            endIndex = j;
+                            let currExp = str.substring(i + 2, j);
 
-        /*  if (hasPowers == true) {
-              for (var i = 0; i < str.length; i++) {
-                  var ch = str.charAt(i);
-                  if (ch == "^") {
-                      var endIndex;
-                      for (var j = i+1; j < str.length; j++) {
-                          var currCh = str.charAt(j);
-                          if (currCh ==")") {
-                              endIndex = j;
-                              let currExp = str.substring(i + 1, j);
-                              currExp = eval(currExp);
+                            //power value
+                            currExp = eval(currExp);
 
-                              currExp = Math.pow(base, currExp).toFixed(3);
-                              str = str.substring(0, i) + currExp + str.substring(j, str.length);
-                              form.display.value = str;
-                          }
-                      }
-                  }
-              }
-          }
-      */
+                            var lastOpIndex;
+                            var base;
+                            for (var k = i - 1; k > 0; k--) {
+                                var lastOperator = str.charAt(k);
+                                if (lastOperator < "0" || lastOperator > "9") {
+                                    lastOpIndex = k;
+                                    break;
+                                }
+                            }
+                            base = str.substring(k, i);
+
+                            currExp = Math.pow(base, currExp);
+
+
+                            if (str.charAt(k) < "0" || str.charAt(k) > "9") {
+                                str = str.substring(0, k+1) + currExp + str.substring(j + 1, str.length);
+                            } else {
+                                str = currExp + str.substring(j + 1, str.length);
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
     }
-        form.display.value = eval(str).toFixed(3);
-}
+    form.display.value = eval(str).toFixed(3);
 
-    else {
-        form.display.value = eval(form.display.value);
-    }
 }
 
 

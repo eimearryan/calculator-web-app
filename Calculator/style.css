@@ -11,6 +11,9 @@ body {
     height: 320px;
     background-color: #c0c0c0;
     border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
 
 }
 #display {
