@@ -23,17 +23,17 @@ expect(text).toBe(true)
 });
     
 test('Testing Power input for checkNum function:', () => {
-const text = checkNum("2^6");
+const text = checkNum("2^(6)");
 expect(text).toBe(true)
 });
 
 test('Testing Exp input for checkNum function:', () => {
-const text = checkNum("(2e6)");
+const text = checkNum("(2*e(6))");
 expect(text).toBe(true)
 });
 
 test('Testing Log input for checkNum function:', () => {
-const text = checkNum("(2l6)");
+const text = checkNum("(2*ln(6))");
 expect(text).toBe(true)
 });
 
