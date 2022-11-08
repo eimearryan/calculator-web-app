@@ -27,6 +27,12 @@ const text = checkNum("2^(6)");
 expect(text).toBe(true)
 });
 
+test('Testing Division input for checkNum function:', () => {
+    const text = checkNum("6/3");
+    expect(text).toBe(true)
+    });
+
+
 test('Testing Exp input for checkNum function:', () => {
 const text = checkNum("(2*e(6))");
 expect(text).toBe(true)
