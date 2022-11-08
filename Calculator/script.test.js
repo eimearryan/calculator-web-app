@@ -38,11 +38,26 @@ expect(text).toBe(true)
 });
 
 test('Testing addChar function:', () => {
-    const text = addChar('0', '0');
-    expect(text).toBe(true)
-    });
+const text = addChar('0', '0');
+expect(text).toBe(true)
+});
    
 test('Testing deleteChar function:', () => {
-    const text = deleteChar('2^2');
-    expect(text).toBe(true)
-    });
+const text = deleteChar('2^2');
+expect(text).toBe(true)
+});
+
+test('Testing compute function with logs:', () => {
+const text = compute('2ln(2)');
+expect(text).toBe(true)
+});
+    
+test('Testing compute function with exponent:', () => {
+const text = compute('2e(2)');
+expect(text).toBe(true)
+});
+
+test('Testing compute function with powers:', () => {
+const text = compute('2^(2)');
+expect(text).toBe(true)
+});     
